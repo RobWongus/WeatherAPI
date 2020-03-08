@@ -1,12 +1,29 @@
-.card {
-    background-color: red;
+#jumbotron {
+    margin-bottom: 1cm;
 }
 
-.card-header {
+
+#cityHeader {
+    margin: auto;
     text-align: center;
-    color: black;
-    border-color: black;
+    color: rgb(144, 224, 15);
 }
 
 
+#buttonDiv {
+    margin: auto;
+    text-align: center;
+    padding-left: 25%;
+    width: 80%;
+}
+
+input[type="text"] {
+    height: 40px;
+    font-size: 20px;
+}
+
+#submitWeather {
+    color: yellow;
+    background-color: blue;
+    font-weight: 600;
 }
