@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="weather.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <title>Weather APP</title>
     <div class="card">
-        <h5 class="card-header">World Weather</h5>
+        <h5 class="card-header text-center" id="weatherHeader">World Weather</h5>
     </div>
 </head>
+
 <body>
-<div class="jumbotron" style="margin-bottom: 1cm; background-color: blue; 
-color:yellow" id="jumbotron">
-    <h2 class="text-center" style="font-size: 50px;font-weight: 400;">Current Weather</h2>
-</div>
-
-<div class="container" id="cityHeader">
-    <div class="row" style="margin-bottom: 20px;">
-      <h3 class="text-center text-primary">Enter City Name</h3>
-    </div>
     
-    <div class ="row form-group form-inline" id=buttonDiv>  
-       <input type= "text" name= "city" id="city" class="form-control" placeholder="Enter City Name">
-       <button id="submitWeather" class="btn btn-primary">Search City</button>
-    </div>
+    <div class="card" style="width: 18rem;" id="weatherborder">
+        <div class="card-header">
+            <nav class="navbar navbar-light bg-light">
+                <form class="form-inline" id="forminput">
+                  <input class="form-control mr-sm-2" type="search button" id="btnAdd"
+                  laceholder="City Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" id="citysearch" type="submit">Search</button>
+                </form>
+              </nav>
+        </div>
+        <ul class="list-group list-group-flush" id="cityList">
+          <li class="list-group-item">Bristol</li>
+          <li class="list-group-item">Toronto</li>
+          <li class="list-group-item">Brixton</li>
+        </ul>
+      </div>
 
-    <div id="showWeather"></div>
-</div>
+      <div class="weathercard" style="width: 18rem;" id="currentweather">
+        <div class="card-body">
+          <h5 class="card-title">Weather</h5>
+          <p class="card-text">City Weather goes here</p>
+        </div>
+      </div>
 
 
-  <script src="weather.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>   
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="weather.js"></script>    
 </body>
 </html>
