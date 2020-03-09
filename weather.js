@@ -5,6 +5,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const key = "b2e836d390c1f7505f5a7127639e2867";
     const form = document.getElementById("weatherInput");
     //Current Weather
+    let searchText = document.getElementById(searchText).value
+         console.log(searchText)
     const weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q={city name}&appid={key}";
     //UV Index//
     const URLUV = "https://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}";
@@ -40,7 +42,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
            }
 
         function weatherSearch(){
-           const weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + "Randallstown" + "&appid=" + key;
+            weatherSearch();
+            const weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchText + "&appid=" + key;
+
+
 
         $.ajax({
             url: weatherUrl,
@@ -50,14 +55,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
            .then(function(response) {
             let location = $("#city");
            location.text(response.name);
-           console.log(response);
+           
            })
 
          }
 
 
-         let citySearch = document.getElementById().value
-         
+         let searchText = document.getElementById(searchText).value
+         console.log(searchText)
          
 
     // let todayDate = moment.unix(response.dt).format("MMMM Do, YYYY");
