@@ -5,9 +5,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const key = "b2e836d390c1f7505f5a7127639e2867";
     const form = document.getElementById("forminput");
     //Current Weather
-    const weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?q={city name}&appid={key}";
+    const weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q={city name}&appid={key}";
     //UV Index//
-    const URLUV = "http://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}";
+    const URLUV = "https://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}";
     
     
     //Five Day Forecast, Future Forecast
@@ -19,9 +19,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     button.addEventListener("click", function(event){
         event.preventDefault()
-            
-            
-        })
+        addItem();
+        
+        function addItem(){
+        let list = document.createElement("li");
+        list.classlist.add("list-group-item");
+
+        let cityList = document.getElementById("cityList");
+        let searchText = document.getElementById("btnadd").value;
+
+        list.textContent = searchText;
+        cityList.append(list)
+        
+        
+        }
+        
+    })
         
     
     function addItem(){
