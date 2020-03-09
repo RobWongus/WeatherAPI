@@ -17,8 +17,8 @@
     <div class="card" style="width: 18rem;" id="weatherborder">
         <div class="card-header">
             <nav class="navbar navbar-light bg-light">
-                <form class="form-inline" id="forminput">
-                  <input class="form-control mr-sm-2" type="text" id="btnAdd" placeholder="City Search" aria-label="Search" onclick="addItem()">
+                <form class="form-inline" id="weatherInput">
+                  <input class="form-control mr-sm-2" type="text" id="btnAdd" placeholder="City Search" aria-label="Search">
                   <button class="btn btn-outline-success my-2 my-sm-0" id="citysearch" type="submit">Search</button>
                 </form>
               </nav>
@@ -29,7 +29,7 @@
         </ul>
       </div>
 
-      <div class="weathercard" style="width: 18rem;" id="currentweather">
+      <div class="weathercard" style="width: 18rem;" id="currentWeatherBox">
         <div class="card-body">
           <h5 class="card-title">Weather</h5>
           <p class="card-text">City Weather goes here</p>
@@ -51,6 +51,9 @@
         
     </div>
 
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="weather.js"></script>    
 </body>
 </html>

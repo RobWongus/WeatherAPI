@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let button = document.getElementById("citysearch");
     let cityEntry = document.getElementsByClassName("form-control");
     const key = "b2e836d390c1f7505f5a7127639e2867";
-    const form = document.getElementById("forminput");
+    const form = document.getElementById("weatherInput");
     //Current Weather
     const weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q={city name}&appid={key}";
     //UV Index//
@@ -18,65 +18,74 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // }
 
     
-    button.addEventListener("click", function(event){
-        event.preventDefault()
-        addItem();
-        document.getElementById("btnAdd").value = ""
+       button.addEventListener("click", function(event){
+           event.preventDefault()
+           addItem();
+           weatherSearch();
+           document.getElementById("btnAdd").value = ""
         })
     
-        function addItem(){
-        let list = document.createElement("li");
-        list.classList.add("list-group-item");
+           function addItem(){
+           let list = document.createElement("li");
+           list.classList.add("list-group-item");
         
     
-        let cityList = document.getElementById("cityList");
-        let searchText = document.getElementById("btnAdd").value;
+           let cityList = document.getElementById("cityList");
+           let searchText = document.getElementById("btnAdd").value;
     
-        list.textContent = searchText;
-        cityList.append(list);
+           list.textContent = searchText;
+           cityList.append(list);
+
+        
+           }
 
         function weatherSearch(){
-            const weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + "Bristol" + "&appid=" + key;
-    
-            $.ajax({url: weatherUrl,
-                method: "GET"
-        })
-        
-        .then(function(response) {
+           const weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + "Randallstown" + "&appid=" + key;
+
+        $.ajax({
+            url: weatherUrl,
+            method: "GET"
+       })
+
+           .then(function(response) {
             let location = $("#city");
-            location.text(response.name);
-            console.log(response);
-            })
-    
-        }
+           location.text(response.name);
+           console.log(response);
+           })
 
-}
-    let todayDate = moment.unix(response.dt).format("MMMM Do, YYYY");
+         }
 
-    let today = $("#today");
-    today.text(todayDate)
 
-    let iconToday = $("#weatherIcon");
-    let getIcon = response.weather[0].icon;
+         let citySearch = document.getElementById().value
+         
+         
 
-    let iconImage = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + getIcon + "@2x.png");
-    iconToday.append(iconImage);
+    // let todayDate = moment.unix(response.dt).format("MMMM Do, YYYY");
 
-    // kelvin to farenheit conversion
-    let temp = $("#temperature");
-    let tempConvert = (((response.main.temp - 273.15) * (9 / 5)) + 32);
+    // let today = $("#today");
+    // today.text(todayDate)
 
-    temp.text("Temperature: " + tempConvert.toFixed(1) + "°F");
+    // let iconToday = $("#weatherIcon");
+    // let getIcon = response.weather[0].icon;
 
-    let humidity = $("#humidity");
-    humidity.text("Humidity: " + response.main.humidity + "%");
+    // let iconImage = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + getIcon + "@2x.png");
+    // iconToday.append(iconImage);
 
-    let windSpeed = $("#windSpeed");
-    windSpeed.text("Wind Speed: " + response.wind.speed + " MPH");
+    // // kelvin to farenheit conversion
+    // let temp = $("#temperature");
+    // let tempConvert = (((response.main.temp - 273.15) * (9 / 5)) + 32);
 
-    //generate lon and lat for uv index pull
-    let lon = response.coord.lon;
-    let lat = response.coord.lat;
+    // temp.text("Temperature: " + tempConvert.toFixed(1) + "°F");
+
+    // let humidity = $("#humidity");
+    // humidity.text("Humidity: " + response.main.humidity + "%");
+
+    // let windSpeed = $("#windSpeed");
+    // windSpeed.text("Wind Speed: " + response.wind.speed + " MPH");
+
+    // //generate lon and lat for uv index pull
+    // let lon = response.coord.lon;
+    // let lat = response.coord.lat;
 
     //     weather ({
     //     "events": [
