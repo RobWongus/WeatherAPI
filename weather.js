@@ -17,60 +17,88 @@ window.addEventListener('DOMContentLoaded', (event) => {
         
     // }
 
+    
     button.addEventListener("click", function(event){
         event.preventDefault()
         addItem();
-        
+        document.getElementById("btnAdd").value = ""
+        })
+    
         function addItem(){
         let list = document.createElement("li");
-        list.classlist.add("list-group-item");
-
+        list.classList.add("list-group-item");
+        
+    
         let cityList = document.getElementById("cityList");
-        let searchText = document.getElementById("btnadd").value;
-
+        let searchText = document.getElementById("btnAdd").value;
+    
         list.textContent = searchText;
-        cityList.append(list)
+        cityList.append(list);
+
+        function weatherSearch(){
+            const weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + "Bristol" + "&appid=" + key;
+    
+            $.ajax({url: weatherUrl,
+                method: "GET"
+        })
         
-        
+        .then(function(response) {
+            let location = $("#city");
+            location.text(response.name);
+            console.log(response);
+            })
+    
         }
+
+}
+    let todayDate = moment.unix(response.dt).format("MMMM Do, YYYY");
+
+    let today = $("#today");
+    today.text(todayDate)
+
+    let iconToday = $("#weatherIcon");
+    let getIcon = response.weather[0].icon;
+
+    let iconImage = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + getIcon + "@2x.png");
+    iconToday.append(iconImage);
+
+    // kelvin to farenheit conversion
+    let temp = $("#temperature");
+    let tempConvert = (((response.main.temp - 273.15) * (9 / 5)) + 32);
+
+    temp.text("Temperature: " + tempConvert.toFixed(1) + "°F");
+
+    let humidity = $("#humidity");
+    humidity.text("Humidity: " + response.main.humidity + "%");
+
+    let windSpeed = $("#windSpeed");
+    windSpeed.text("Wind Speed: " + response.wind.speed + " MPH");
+
+    //generate lon and lat for uv index pull
+    let lon = response.coord.lon;
+    let lat = response.coord.lat;
+
+    //     weather ({
+    //     "events": [
+    //       {
+    //         "temperature": 
+    //         "unit": celsius
+    //         "humidity" : 
+    //         "windspeed" :
+    //         "uvindex" ;
+    //       },
+    //       {
+    //       "description" :
+    //       "iconId" :
+    //       "city" :
+    //       "country" :
+    //       }
+    //     ]
         
-    })
-        
+    // })
+
     
-    function addItem(){
-        var li = document.createElement("LI");  
-        var input = document.getElementById("add");
-        li.innerHTML = input.value;
-        input.value = "";
-        document.getElementById("cityList").appendChild(li);
-    }
-    // const weather = {
-    //     temperature : {
-    //         value: ,
-    //         unit : "celsius"
-    //         humidity :
-    //         windspeed
-    //         uvindex
-    //     },
-    //     decsription : ""
-    //     iconId : ""
-    //     city : "",
-    //     country : ""
-    // }
-    
+
+
    
-    
-    
-    
-    // function clickButton(event) {
-    //     let searchBar = event.target.previousElementSibling.value
-    //     let node = document.createElement("list-group");                 // Create a <li> node
-    //     let textnode = document.createTextNode("");         // Create a text node
-    //     node.appendChild(textnode);                              // Append the text to <li>
-    //     document.getElementsByClassName("myList").appendChild(node);
-    //     event.preventDefault();
-        
-        
-    // }
-    
 });
