@@ -1,4 +1,5 @@
 window.addEventListener('DOMContentLoaded', (event) => {
+    
     let button = document.getElementById("citysearch");
     let cityEntry = document.getElementsByClassName("form-control");
     const key = "b2e836d390c1f7505f5a7127639e2867";
@@ -16,10 +17,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
         
     // }
 
-    function clickMe() {
-        document.getElementById("clickMe").innerHTML=cityList
-        console.log(cityList)
-    }
+    button.addEventListener("click", function(event){
+        event.preventDefault()
+            
+            
+        })
+        
+    
     function addItem(){
         var li = document.createElement("LI");  
         var input = document.getElementById("add");
@@ -41,7 +45,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //     country : ""
     // }
     
-    // citySearch.addEventListener("click", clickButton)
+   
     
     
     
