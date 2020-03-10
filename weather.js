@@ -5,8 +5,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const key = "b2e836d390c1f7505f5a7127639e2867";
     const form = document.getElementById("weatherInput");
     //Current Weather
-    let searchText = document.getElementById(searchText).value
-         console.log(searchText)
+    
     const weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q={city name}&appid={key}";
     //UV Index//
     const URLUV = "https://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}";
@@ -42,7 +41,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
            }
 
         function weatherSearch(){
-            weatherSearch();
+            let searchText = document.getElementById("btnAdd").value
             const weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchText + "&appid=" + key;
 
 
@@ -50,48 +49,51 @@ window.addEventListener('DOMContentLoaded', (event) => {
         $.ajax({
             url: weatherUrl,
             method: "GET"
+
        })
 
            .then(function(response) {
-            let location = $("#city");
-           location.text(response.name);
+            console.log(response);
+            
+            let todayDate = moment.unix(response.dt).format("MMMM Do, YYYY");
+
+            let today = $("#today");
+            $(today).text(todayDate);
+            
+
+            let iconToday = $("#weatherIcon");
+            let getIcon = response.weather[0].icon;
+
+            let iconImage = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + getIcon + "@2x.png");
+            $(iconToday).append(iconImage);
+
+            // kelvin to farenheit conversion
+            let temp = $("#temperature");
+            let tempConvert = (((response.main.temp - 273.15) * (9 / 5)) + 32);
+
+            $(temp).text("Temperature: " + tempConvert.toFixed(1) + "°F");
+
+            let humidity = $("#humidity");
+            $(humidity).text("Humidity: " + response.main.humidity + "%");
+
+
+            //generate lon and lat for uv index pull
+             let lon = response.coord.lon;
+             let lat = response.coord.lat;
+
+            
+             
+            
            
            })
 
          }
 
-
-         let searchText = document.getElementById(searchText).value
-         console.log(searchText)
+        
+         
          
 
-    // let todayDate = moment.unix(response.dt).format("MMMM Do, YYYY");
-
-    // let today = $("#today");
-    // today.text(todayDate)
-
-    // let iconToday = $("#weatherIcon");
-    // let getIcon = response.weather[0].icon;
-
-    // let iconImage = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + getIcon + "@2x.png");
-    // iconToday.append(iconImage);
-
-    // // kelvin to farenheit conversion
-    // let temp = $("#temperature");
-    // let tempConvert = (((response.main.temp - 273.15) * (9 / 5)) + 32);
-
-    // temp.text("Temperature: " + tempConvert.toFixed(1) + "°F");
-
-    // let humidity = $("#humidity");
-    // humidity.text("Humidity: " + response.main.humidity + "%");
-
-    // let windSpeed = $("#windSpeed");
-    // windSpeed.text("Wind Speed: " + response.wind.speed + " MPH");
-
-    // //generate lon and lat for uv index pull
-    // let lon = response.coord.lon;
-    // let lat = response.coord.lat;
-
+    
     //     weather ({
     //     "events": [
     //       {
@@ -105,7 +107,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //       "description" :
     //       "iconId" :
     //       "city" :
-    //       "country" :
+    //      
     //       }
     //     ]
         
